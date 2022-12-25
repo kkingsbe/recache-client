@@ -1,7 +1,7 @@
 const axios = require("axios")
 
-const baseurl = "https://www.recache.cloud/api"
-//const baseurl = "http://localhost:3001/api"
+//const baseurl = "https://www.recache.cloud/api"
+const baseurl = "http://localhost:3001/api"
 let key
 
 class Recache {
@@ -32,7 +32,7 @@ class Recache {
             }
         } catch (e) {
             console.log("Recache: Issue with our servers or your configuration. Ignoring cache")
-            if(e.response.data == '"Endpoint not found"') console.log("     Incorrect token, project ID, or endpoint ID. Please verify configuration.")
+            if(e?.response?.data == '"Endpoint not found"') console.log("     Incorrect token, project ID, or endpoint ID. Please verify configuration.")
             else console.log(e.stack)
             return await func(...args)
         }
