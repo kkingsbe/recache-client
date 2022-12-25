@@ -1,5 +1,5 @@
 const axios = require("axios")
-const {stringify} = require("flatted/cjs")
+const {stringify} = require("flatted")
 
 const baseurl = "https://www.recache.cloud/api"
 //const baseurl = "http://localhost:3000/api"
@@ -28,7 +28,7 @@ class Recache {
         if(typeof(compare) == "undefined") compare = ""
         //See if there is already a cached call with same id and arguments
         try {
-            let {data} = await axios.get(`${baseurl}/${projectId}/${endpointId}?token=${key}&args=${stringify(args)}&compare=${compare}`)
+            let {data} = await axios.get(`${baseurl}/${projectId}/${endpointId}?token=${key}&args=${stringify(args)}&compare=${stringify(compare)}`)
             if(data.exists) {
                 //If there is, return the cached response
                 return data.data
