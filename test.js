@@ -16,11 +16,11 @@ async function testFunc(a, b) {
 async function main() {
     let start = Date.now()
     Recache.init(token, projectID)
-    await Recache.clearProjectCache()
-    await Recache.clearEndpointCache(endpointID)
-    //let res = await Recache.cached(endpointID, testFunc, [1, 5])
+    //await Recache.clearProjectCache()
+    //await Recache.clearEndpointCache(endpointID)
+    let res = await Recache.cached(endpointID, testFunc, [1, 5])
     let elapsed = Date.now() - start
-    //console.log(res)
+    console.log(res)
     console.log("Time elapsed: " + elapsed)
 }
 
