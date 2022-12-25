@@ -1,8 +1,8 @@
 const axios = require("axios")
 const {stringify} = require("flatted")
 
-//const baseurl = "https://www.recache.cloud/api"
-const baseurl = "http://localhost:3000/api"
+const baseurl = "https://www.recache.cloud/api"
+//const baseurl = "http://localhost:3000/api"
 let key, projectId
 
 class Recache {
