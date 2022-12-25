@@ -1,6 +1,6 @@
 {
   "name": "recache-client",
-  "version": "0.9.52",
+  "version": "0.9.54",
   "description": "A library for easily integrating Recache into projects build on the Javascript ecosystem.",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "author": "Kyle Kingsberry",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.2.1"
+    "axios": "^1.2.1",
+    "flatted": "^3.2.7"
   }
 }
