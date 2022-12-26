@@ -94,5 +94,24 @@ You can also optionally pass in a 4th argument to the Recache.cached() function 
 static async cached(endpointId, func, args, compare)
 ```
 
-### Clear project-wide cache
 ### Clear endpoint cache
+If you have caching implemented within your project, you may want to clear the cache when certain actions occur, instead of waiting for the cached data to be invalidated once the TTL has elapsed.
+
+```js
+await Recache.clearEndpointCache(endpointID)
+```
+
+```js
+/**
+ * Clears the cache for the given endpoint in your project
+ * @param {*} endpointId 
+ */
+static async clearEndpointCache(endpointId)
+```
+
+### Clear project-wide cache
+Use this function if you instead want to clear the cache for an entire project.
+```js
+await Recache.clearProjectCache()
+```
+
