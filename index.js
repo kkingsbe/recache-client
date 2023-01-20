@@ -93,7 +93,7 @@ class Recache {
      */
     static async logWsEvent(ws, message) { 
         try {
-            await axios.post(`${baseurl}/projects/${projectId}/wsmessages/add`, {
+            await axios.post(`${baseurl}/${projectId}/wsmessages/add`, {
                 ip: ws._socket.remoteAddress,
                 message,
                 key
