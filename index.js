@@ -85,6 +85,28 @@ class Recache {
             }
         }
     }
+
+    /**
+     * Logs a websocket event
+     * @param {WebSocket} ws The websocket object to get the ip address from
+     * @param {string} message The message to log
+     */
+    static async logWsEvent(ws, message) { 
+        try {
+            await axios.post(`${baseurl}/projects/${projectId}/wsmessages/add`, {
+                ip: ws._socket.remoteAddress,
+                message,
+                token
+            })
+        } catch (e) {
+            console.log("Recache: Issue with our servers or your configuration.")
+            if(e?.response?.status == 404) {
+                console.log("     Incorrect project id or token")
+            } else {
+                console.log(e.stack)
+            }
+        }
+    }
 }
 
 module.exports = {Recache}
