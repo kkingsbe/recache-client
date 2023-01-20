@@ -88,13 +88,13 @@ class Recache {
 
     /**
      * Logs a websocket event
-     * @param {WebSocket} ws The websocket object to get the ip address from
+     * @param {string} ip The ip address to log
      * @param {string} message The message to log
      */
-    static async logWsEvent(ws, message) { 
+    static async logWsEvent(ip, message) { 
         try {
             await axios.post(`${baseurl}/${projectId}/wsmessages/add`, {
-                ip: ws._socket.remoteAddress,
+                ip,
                 message,
                 key
             })
