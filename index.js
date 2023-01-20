@@ -96,7 +96,7 @@ class Recache {
             await axios.post(`${baseurl}/${projectId}/wsmessages/add`, {
                 ip,
                 message,
-                key
+                token: key
             })
         } catch (e) {
             console.log("Recache: Issue with our servers or your configuration.")
