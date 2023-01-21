@@ -93,6 +93,16 @@ You can also optionally pass in a 4th argument to the Recache.cached() function 
  */
 static async cached(endpointId, func, args, compare)
 ```
+### Log a message
+To log a message, along with Geolocation data obtained automatically be Recache, you can use the following function:
+```js
+await Recache.logEvent_AutodetectIp("Hello, World!")
+```
+The above function will only get the correct IP address if recache-client is loaded on the client side. If you are instead using a server-side integration, you can specify the IP address to use by using the following function:
+```js
+await Recache.logEvent(ip, "Hello, World!")
+```
+These logs, along with their geolocation data, can then be found within the Activity tab on your projects page in Recache
 
 ### Clear endpoint cache
 If you have caching implemented within your project, you may want to clear the cache when certain actions occur, instead of waiting for the cached data to be invalidated once the TTL has elapsed.
