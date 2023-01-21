@@ -87,13 +87,13 @@ class Recache {
     }
 
     /**
-     * Logs a websocket event
+     * Logs an event, with ip & geo logging
      * @param {string} ip The ip address to log
      * @param {string} message The message to log
      */
-    static async logWsEvent(ip, message) { 
+    static async logEvent(ip, message) { 
         try {
-            await axios.post(`${baseurl}/${projectId}/wsmessages/add`, {
+            await axios.post(`${baseurl}/${projectId}/logs`, {
                 ip,
                 message,
                 token: key
@@ -106,6 +106,10 @@ class Recache {
                 console.log(e.stack)
             }
         }
+    }
+
+    static async logWsEvent(ip, message) {
+        await this.logEvent(ip, message)
     }
 }
 
