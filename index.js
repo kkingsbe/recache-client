@@ -3,7 +3,7 @@ const {stringify} = require("flatted")
 
 const baseurl = "https://www.recache.cloud/api"
 //const baseurl = "http://localhost:3000/api"
-let key, projectId
+let key, projectId, clientip
 
 class Recache {
     /**
@@ -11,9 +11,10 @@ class Recache {
      * @param {*} _key Your project authentication token
      * @param {*} _projectId The ID of the Recache project which is being accessed
      */
-    static init(_key, _projectId) {
+    static async init(_key, _projectId) {
         key = _key
         projectId = _projectId
+        clientip = (await axios.get(baseurl + "/iplookup")).data.ip
     }
 
     /**
@@ -95,6 +96,27 @@ class Recache {
         try {
             await axios.post(`${baseurl}/${projectId}/logs`, {
                 ip,
+                message,
+                token: key
+            })
+        } catch (e) {
+            console.log("Recache: Issue with our servers or your configuration.")
+            if(e?.response?.status == 404) {
+                console.log("     Incorrect project id or token")
+            } else {
+                console.log(e.stack)
+            }
+        }
+    }
+
+    /**
+     * Logs an event, with ip & geo logging, using an autodetected ip address
+     * @param {string} message The message to log
+     */
+    static async logEvent_AutodetectIp(message) {
+        try {
+            await axios.post(`${baseurl}/${projectId}/logs`, {
+                ip: clientip,
                 message,
                 token: key
             })

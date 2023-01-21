@@ -1,6 +1,6 @@
 {
   "name": "recache-client",
-  "version": "0.9.62",
+  "version": "0.9.63",
   "description": "A library for easily integrating Recache into projects build on the Javascript ecosystem.",
   "main": "index.js",
   "scripts": {
